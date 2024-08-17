@@ -1,0 +1,31 @@
+name: lenia
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  hooks_riverpod: ^2.4.9
+  flutter_hooks: ^0.20.4
+  riverpod_annotation: ^2.3.3
+  file_saver: ^0.2.12
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.4.8
+  custom_lint: ^0.5.8
+  riverpod_generator: ^2.3.9
+  riverpod_lint: ^2.3.7
+
+flutter:
+  uses-material-design: true
+  shaders:
+    - shaders/shader.frag
