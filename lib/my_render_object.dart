@@ -34,7 +34,12 @@ class _LeniaAnimationWidgetState extends State<LeniaAnimationWidget> with Single
   }
 
   void _handleTick(Duration elapsed) {
-    setState(() => _time = elapsed.inMicroseconds.toDouble() / Duration.microsecondsPerSecond);
+    setState(() {
+      final currentTime = elapsed.inMicroseconds.toDouble() / Duration.microsecondsPerSecond;
+      if (currentTime - _time > 0.1) {
+        _time = currentTime;
+      }
+    });
   }
 
   @override
@@ -43,8 +48,8 @@ class _LeniaAnimationWidgetState extends State<LeniaAnimationWidget> with Single
       color: Colors.white,
       child: Center(
         child: SizedBox(
-          width: 300,
-          height: 300,
+          width: 250,
+          height: 250,
           child: Listener(
             behavior: HitTestBehavior.opaque,
             onPointerDown: (event) {
@@ -160,7 +165,7 @@ class MyRenderObject extends RenderRepaintBoundary {
   }
 
   Future<void> saveImage() async {
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(Duration.zero);
     _image = (layer! as OffsetLayer).toImageSync(Offset.zero & size, pixelRatio: devicePixelRatio);
   }
 
@@ -183,9 +188,9 @@ class MyRenderObject extends RenderRepaintBoundary {
     canvas.drawRect(offset & size, paint);
     if (pointToDraw != null) {
       final circlePaint = Paint()
-        ..color = Colors.white
+        ..color = Colors.black
         ..style = PaintingStyle.fill;
-      canvas.drawCircle(pointToDraw!, 4, circlePaint);
+      canvas.drawCircle(pointToDraw!, 20, circlePaint);
     }
     saveImage();
   }
